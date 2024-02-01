@@ -1,9 +1,7 @@
 ### Site Settings ###
-title               : portfolYOU
+title               : Randy Harsuko
 description         : >-
-                      I turn coffee :coffee: into code,
-                      use tabs over spaces
-                      and never broke production.
+                      Hi there, welcome to my page!
 baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 repository          : randyharsuko/randyharsuko.github.io     # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme        : YoussefRaafatNasry/portfolYOU
@@ -24,24 +22,24 @@ nav_exclude:                                            # The following paths ar
 
 ### Author Info ###
 author:
-  name              : John Doe
-  image             : https://i.imgur.com/uyDNQnn.jpg
-  behance           : your_username
+  name              : Randy Harsuko
+  image             : https://media.licdn.com/dms/image/C4E03AQFQq-Ig4oQRvw/profile-displayphoto-shrink_800_800/0/1643290567552?e=1712188800&v=beta&t=wyMZs20qFnAKjXAd-31n9CCyZ34qJasvchHkypBB8Jc
+  # behance           : your_username
 # dribbble          : your_username
-  email             : username@domain.com
-  facebook          : your_username
-  github            : your_username
+  email             : mochammad.randycaesario@kaust.edu.sa
+  # facebook          : your_username
+  github            : randyharsuko
 # gitlab            : your_username
 # instagram         : your_username
 # kaggle            : your_username
-  linkedin          : your_username
-  medium            : your_username
+  linkedin          : randy-harsuko
+  # medium            : your_username
 # soundcloud        : your_username
 # spotify           : your_username
 # stackoverflow     : your_user_id
 # tumblr            : your_username.tumblr.com
 # twitch            : your_username
-  twitter           : your_username
+  # twitter           : your_username
 # vimeo             : your_username
 # youtube           : your_channel_name
 # keybase           : your_username
