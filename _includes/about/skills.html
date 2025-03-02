@@ -1,0 +1,50 @@
+<div class="col-lg">
+
+  <h2 class="mb-3">{{ include.title }}</h2>
+
+  {% for skill in include.source %}
+
+  <div class="row justify-content-between align-items-center">
+    <div class="col-8">
+      <p class="mb-1">{{ skill.name }}</p>
+    </div>
+    <div class="col-4">
+      <p class="mb-1 text-muted text-center">{{ skill.level }}</p>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-0" style="height: 8px;">
+    <!-- Beginner Level Bar -->
+    <div class="col-4 px-1">
+      <div class="progress bg-themed h-100">
+        <div class="progress-bar" 
+             style="width: {% if skill.level == 'Beginner' or skill.level == 'Intermediate' or skill.level == 'Advanced' %}100%{% else %}0%{% endif %}; 
+                    background-color: #c3d9c8;">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Intermediate Level Bar -->
+    <div class="col-4 px-1">
+      <div class="progress bg-themed h-100">
+        <div class="progress-bar" 
+             style="width: {% if skill.level == 'Intermediate' or skill.level == 'Advanced' %}100%{% else %}0%{% endif %}; 
+                    background-color: #77e091;">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Advanced Level Bar -->
+    <div class="col-4 px-1">
+      <div class="progress bg-themed h-100">
+        <div class="progress-bar" 
+             style="width: {% if skill.level == 'Advanced' %}100%{% else %}0%{% endif %}; 
+                    background-color: #28a745;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+</div>

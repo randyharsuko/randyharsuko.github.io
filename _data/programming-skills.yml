@@ -1,9 +1,7 @@
 - name: Python
-  percentage: 99
-  color: success
+  level: Advanced
 
 - name: MATLAB
-  percentage: 75
-  color: secondary
+  level: Intermediate
 
   
