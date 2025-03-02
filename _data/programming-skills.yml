@@ -1,6 +1,6 @@
 - name: Python
   percentage: 99
-  color: danger
+  color: success
 
 - name: MATLAB
   percentage: 75

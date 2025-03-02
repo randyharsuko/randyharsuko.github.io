@@ -5,7 +5,7 @@ description         : >-
 baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 repository          : randyharsuko/randyharsuko.github.io     # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme        : YoussefRaafatNasry/portfolYOU
-open_new_tab        : false                             # Opens external URLs in new tab (works for posts, projects and navbar only)
+open_new_tab        : true                             # Opens external URLs in new tab (works for posts, projects and navbar only)
 
 
 ### Plugins ###
@@ -23,7 +23,7 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : Randy Harsuko
-  image             : assets/1000x1000_med.jpg
+  image             : https://avatars.githubusercontent.com/u/58156305?s=400&u=5822f2de2f67d2d53798abab21a68b894b600a78&v=4
   # behance           : your_username
 # dribbble          : your_username
   email             : mochammad.randycaesario@kaust.edu.sa
