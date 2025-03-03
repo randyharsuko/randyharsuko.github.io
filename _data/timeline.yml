@@ -1,6 +1,19 @@
-- title: Ph.D. Student, Earth Science and Engineering, KAUST
-  from: 2021
-  to: present
-  description: Working on deep learning applied to seismic data processing and inverse problems under 
-               Seismic Wave Analysis Group (SWAG) and DeepWave consortium.
+- title: Research Intern, Saudi Aramco
+  from: June 2024
+  to: August 2024
+  description: Developed a Meta-Continual Learning framework for a seismic interpretation foundation model with the AI & Advanced Computing Team, EXPEC ARC.
 
+- title: Data Analyst, PT Sharing Vision Indonesia
+  from: February 2021
+  to: July 2021
+  description: Created insights from a big data cluster of one of the country's biggest state-owned enterprises using statistics and data visualization techniques.
+
+- title: Junior Geophysicist, PT LAPI ITB
+  from: August 2020
+  to: Februay 2021
+  description: Determined potential hydrocarbon reservoir region in Java Island, Indonesia using passive seismic waveform attributes and machine learning.
+
+- title: Intern, PT PetroChina International Jabung
+  from: July 2018
+  to: August 2018
+  description: Identified potential reservoir region based on seismic multi-attribute analysis on newly added development wells in Sumatera, Indonesia.

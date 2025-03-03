@@ -4,4 +4,10 @@
 - name: MATLAB
   level: Intermediate
 
+- name: PyTorch
+  level: Advanced
+
+- name: TensorFlow
+  level: Intermediate
+
   
