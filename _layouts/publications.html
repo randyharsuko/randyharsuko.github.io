@@ -1,0 +1,185 @@
+---
+layout: default
+---
+
+<div class="publications">
+  <h1>{{ page.title }}</h1>
+  <div class="pub-list" id="publications-container">
+    <!-- Publications will be rendered here via JavaScript -->
+    <p>Loading publications...</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bibtex-parse-js@0.0.24/bibtexParse.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $.get('{{ site.baseurl }}/assets/publications.bib', function(data) {
+      try {
+        const publications = bibtexParse.toJSON(data);
+        const container = $('#publications-container');
+        container.empty();
+        
+        // Group publications by entry type
+        const pubsByType = {};
+        
+        publications.forEach(pub => {
+          const type = pub.entryType.toLowerCase();
+          if (!pubsByType[type]) {
+            pubsByType[type] = [];
+          }
+          pubsByType[type].push(pub);
+        });
+        
+        // Define the order of publication types
+        const typeOrder = [
+          'article', 
+          'book', 
+          'inbook',
+          'incollection',
+          'inproceedings', 
+          'conference', 
+          'proceedings',
+          'techreport',
+          'unpublished',
+          'misc'
+        ];
+        
+        // Sort each group by year
+        Object.keys(pubsByType).forEach(type => {
+          pubsByType[type].sort((a, b) => {
+            return parseInt(b.entryTags.year || 0) - parseInt(a.entryTags.year || 0);
+          });
+        });
+        
+        // Create a section for each publication type
+        typeOrder.forEach(type => {
+          if (pubsByType[type] && pubsByType[type].length > 0) {
+            // Create section header with formatted title
+            const sectionTitle = formatSectionTitle(type);
+            const sectionElement = $(`
+              <div class="pub-section">
+                <h2 class="pub-section-title">${sectionTitle}</h2>
+              </div>
+            `);
+            
+            // Add publications to this section
+            pubsByType[type].forEach(pub => {
+              const entryTags = pub.entryTags;
+              const authors = entryTags.author ? formatAuthors(entryTags.author) : '';
+              const title = entryTags.title ? entryTags.title.replace(/[{}]/g, '') : 'Untitled';
+              const venue = entryTags.journal || entryTags.booktitle || '';
+              const year = entryTags.year || '';
+              
+              // Create title element with URL if available
+              let titleElement = '';
+              if (entryTags.url) {
+                titleElement = `<div class="pub-title"><a href="${entryTags.url}" target="_blank">${title}</a></div>`;
+              } else if (entryTags.doi) {
+                titleElement = `<div class="pub-title"><a href="https://doi.org/${entryTags.doi}" target="_blank">${title}</a></div>`;
+              } else {
+                titleElement = `<div class="pub-title">${title}</div>`;
+              }
+              
+              const pubElement = $(`
+                <div class="publication">
+                  ${titleElement}
+                  <div class="pub-authors">${authors}</div>
+                  <div class="pub-venue">${venue.replace(/[{}]/g, '')}, ${year}</div>
+                  <div class="pub-links">
+                    ${entryTags.doi ? `<a href="https://doi.org/${entryTags.doi}" target="_blank" class="pub-link">DOI</a>` : ''}
+                    ${entryTags.url && !titleElement.includes(entryTags.url) ? `<a href="${entryTags.url}" target="_blank" class="pub-link">URL</a>` : ''}
+                    ${entryTags.pdf ? `<a href="${entryTags.pdf}" target="_blank" class="pub-link">PDF</a>` : ''}
+                    ${entryTags.code ? `<a href="${entryTags.code}" target="_blank" class="pub-link">Code</a>` : ''}
+                  </div>
+                </div>
+              `);
+              
+              sectionElement.append(pubElement);
+            });
+            
+            // Add the section to the container
+            container.append(sectionElement);
+          }
+        });
+        
+        // Handle any remaining types not in the predefined order
+        Object.keys(pubsByType).forEach(type => {
+          if (!typeOrder.includes(type) && pubsByType[type].length > 0) {
+            const sectionTitle = formatSectionTitle(type);
+            const sectionElement = $(`
+              <div class="pub-section">
+                <h2 class="pub-section-title">${sectionTitle}</h2>
+              </div>
+            `);
+            
+            pubsByType[type].forEach(pub => {
+              // Same publication rendering code as above
+              const entryTags = pub.entryTags;
+              const authors = entryTags.author ? formatAuthors(entryTags.author) : '';
+              const title = entryTags.title ? entryTags.title.replace(/[{}]/g, '') : 'Untitled';
+              const venue = entryTags.journal || entryTags.booktitle || '';
+              const year = entryTags.year || '';
+              
+              let titleElement = '';
+              if (entryTags.url) {
+                titleElement = `<div class="pub-title"><a href="${entryTags.url}" target="_blank">${title}</a></div>`;
+              } else if (entryTags.doi) {
+                titleElement = `<div class="pub-title"><a href="https://doi.org/${entryTags.doi}" target="_blank">${title}</a></div>`;
+              } else {
+                titleElement = `<div class="pub-title">${title}</div>`;
+              }
+              
+              const pubElement = $(`
+                <div class="publication">
+                  ${titleElement}
+                  <div class="pub-authors">${authors}</div>
+                  <div class="pub-venue">${venue.replace(/[{}]/g, '')}, ${year}</div>
+                  <div class="pub-links">
+                    ${entryTags.doi ? `<a href="https://doi.org/${entryTags.doi}" target="_blank" class="pub-link">DOI</a>` : ''}
+                    ${entryTags.url && !titleElement.includes(entryTags.url) ? `<a href="${entryTags.url}" target="_blank" class="pub-link">URL</a>` : ''}
+                    ${entryTags.pdf ? `<a href="${entryTags.pdf}" target="_blank" class="pub-link">PDF</a>` : ''}
+                    ${entryTags.code ? `<a href="${entryTags.code}" target="_blank" class="pub-link">Code</a>` : ''}
+                  </div>
+                </div>
+              `);
+              
+              sectionElement.append(pubElement);
+            });
+            
+            container.append(sectionElement);
+          }
+        });
+        
+      } catch (error) {
+        $('#publications-container').html('<p>Error loading publications: ' + error.message + '</p>');
+        console.error('Error parsing BibTeX:', error);
+      }
+    }).fail(function() {
+      $('#publications-container').html('<p>Error: Could not load publications.bib file</p>');
+    });
+    
+    function formatAuthors(authors) {
+      // Format authors string to be similar to Google Scholar
+      return authors.replace(/[{}]/g, '').replace(/ and /g, ', ');
+    }
+    
+    function formatSectionTitle(type) {
+      // Format publication type for display
+      const titles = {
+        'article': 'Journal Articles',
+        'inproceedings': 'Conference Papers',
+        'conference': 'Conference Papers',
+        'proceedings': 'Proceedings',
+        'book': 'Books',
+        'inbook': 'Book Chapters',
+        'incollection': 'Book Chapters',
+        'techreport': 'Technical Reports',
+        'unpublished': 'Unpublished',
+        'misc': 'Miscellaneous'
+      };
+      
+      return titles[type] || type.charAt(0).toUpperCase() + type.slice(1);
+    }
+  });
+</script>
