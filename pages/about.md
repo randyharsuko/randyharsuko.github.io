@@ -8,7 +8,7 @@ weight: 4
 # **About Me**
 
 Hi I am **{{ site.author.name }}** :wave:,<br>
-a Ph.D. student in Earth Science and Engineering (ErSE) program at KAUST. My research focus includes seismic processing, deep learning, and seismic inverse problems. I am keen on developing my skills on programming and deep learning tools such as Python, PyTorch, Tensorflow, etc. Feel free to contact me to discuss about collaboration or job opportunities!
+a Postdoctoral Scholar at Civil Engineering and Environmental Department, UC Berkeley and a Research Affiliate at Lawrence Berkeley National Lab (LBNL). I went to KAUST for my Ph.D. in Earth Science and Engineering (ErSE). My research focus includes seismic processing, deep learning, and seismic inverse problems. I am keen on developing my skills on programming and deep learning tools such as Python, PyTorch, Tensorflow, etc. Feel free to contact me to discuss about collaboration or job opportunities!
 
 <div class="row">
 {% include about/skills.html title="Tech Stack" source=site.data.programming-skills %}
